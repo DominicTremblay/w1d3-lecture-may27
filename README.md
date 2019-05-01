@@ -213,11 +213,6 @@ console.log(fruit); // Still print 'Mango'
 
 Objects are key value pairs. In other languages, you might have heard of dictionary, hash, associative array, etc.
 
-```
-
-
-```
-
 ### Create an Object
 
 #### Object Litteral
@@ -272,7 +267,7 @@ movie.genre = 'fantasy';
 #### Example
 
 ```
-var words = ['axel','onyx','boxy','axon'];
+var words = ['axel','onyx','boxy','axon', 'hello'];
 
 function findPosX(list) {
   var xPos = {};
@@ -286,48 +281,26 @@ function findPosX(list) {
 console.log(findPosX(words));
 ```
 
-#### Example (stretch)
-
-We did anoter version where we wanted to know the index of multiple occurences of 'x'
-
-```javascript
-var words = ['boxed', 'axel', 'addax', 'annex', 'xerox'];
-
-var xPos = {};
-
-for (var word of words) {
-  xPos[word] = word.split('').reduce(function(arr, next, index) {
-    console.log(arr, next);
-    if (next === 'x') {
-      return arr.concat(index);
-    } else {
-      return arr;
-    }
-  }, []);
-}
-```
-
 #### How to Test if a Value Exists?
 
 - A value that doesn't exist will return 'undefined'
 
-```
-var words = ['axel','onyx','boxy','axon', 'hello', 'axel'];
+```js
+var weather = ['sun', 'rain', 'sun', 'rain', 'rain', 'rain'];
 
-function findPosX(list) {
-  var xPos = {};
+var weatherStat = {};
 
-  for (var i=0; i < list.length; i++) {
-    if (xPos[list[i]]) {
-      continue; // if it exists, just skip to the next one
-    } else {
-      xPos[list[i]] = list[i].indexOf('x');
-    }
+weather.forEach(function(el) {
+  var keyExist = weatherStat.hasOwnProperty(el);
+
+  if (keyExist) {
+    // increase by 1
+
+    weatherStat[el] += 1;
+  } else {
+    weatherStat[el] = 1;
   }
-  return xPos;
-}
-
-console.log(findPosX(words));
+});
 ```
 
 #### Iterate Over Key Value Pairs
