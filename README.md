@@ -1,5 +1,9 @@
 # D1D3 - Lecture
 
+## How do you comfort a JavaScript bug?
+
+- You console it!
+
 ## Types in JavaScript
 
 - We can use **typeof** to find out the type of something
@@ -13,7 +17,7 @@ var numberOfRings = 20;
 
 console.log(numberOfRings, typeof(numberOfRings));
 
-var elvesRings = 11 / 20;
+var elvesRings = 3 / 20;
 
 console.log(elvesRings, typeof(elvesRings));
 
@@ -286,21 +290,45 @@ console.log(findPosX(words));
 - A value that doesn't exist will return 'undefined'
 
 ```js
-var weather = ['sun', 'rain', 'sun', 'rain', 'rain', 'rain'];
+var weather = [
+  'sun',
+  'rain',
+  'sun',
+  'rain',
+  'rain',
+  'rain',
+  'cloudy',
+  'foggy',
+  'foggy',
+];
 
-var weatherStat = {};
+function weatherStat(weatherArr) {
+  var weatherObj = {};
+  // weatherObj.sun = 0;
+  // weatherObj.rain = 0;
+  // weatherObj.cloudy = 0;
 
-weather.forEach(function(el) {
-  var keyExist = weatherStat.hasOwnProperty(el);
+  // for (var i=0; i < weatherArr.length; i++) {
+  //   var dayForecast = weatherArr[i];
+  //   weatherObj[dayForecast] = 0;
+  // }
 
-  if (keyExist) {
-    // increase by 1
+  for (var i = 0; i < weatherArr.length; i++) {
+    var dayForecast = weatherArr[i];
 
-    weatherStat[el] += 1;
-  } else {
-    weatherStat[el] = 1;
+    weatherObj[dayForecast] = weatherObj[dayForecast] || 0;
+    weatherObj[dayForecast] += 1;
+
+    // if (weatherObj[dayForecast]) {
+    // } else {
+    //   weatherObj[dayForecast] =1;
+    // }
   }
-});
+
+  return weatherObj;
+}
+
+weatherStat(weather);
 ```
 
 #### Iterate Over Key Value Pairs
